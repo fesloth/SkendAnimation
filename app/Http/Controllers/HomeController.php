@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artikel;
+use App\Models\Content;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +24,17 @@ class HomeController extends Controller
         ])->with(compact('users'));
     }
 
+    public function trailer()
+    {
+        $users = User::all();
+        $user = auth()->user();
+
+        return view('home.trailer', [
+            "title" => "Trailer",
+            "user" => $user,
+        ])->with(compact('users'));
+    }
+
     public function produk()
     {
         $users = User::all();
@@ -38,23 +51,27 @@ class HomeController extends Controller
 
     public function blog()
     {
-        $users = User::all();
         $user = auth()->user();
-
+        $userContents = Content::all(); 
+    
         return view('home.blog', [
             "title" => "Blog",
+            "userContents" => $userContents, 
             "user" => $user,
-        ])->with(compact('users'));
+        ]);
     }
+    
 
     public function artikel()
     {
         $users = User::all();
         $user = auth()->user();
+        $artikels = Artikel::all();
 
         return view('home.artikel', [
             "title" => "Artikel",
             "user" => $user,
+            "artikels" => $artikels,
         ])->with(compact('users'));
     }
 
@@ -77,12 +94,15 @@ class HomeController extends Controller
         $youtubeLink = $user->youtube;
         $discordID = $user->discord;
 
+        $userContents = $user->contents; 
+
         return view('home.profile', [
             "title" => "Profile Setting",
             "user" => $user,
             "youtubeLink" => $youtubeLink,
             "discordID" => $discordID,
-        ])->with(compact('user', 'instagramLink', 'youtubeLink', 'discordID'));
+            "userContents" => $userContents, 
+        ])->with(compact('user', 'instagramLink', 'youtubeLink', 'discordID', 'userContents'));
     }
 
     public function user_setting()
@@ -161,5 +181,35 @@ class HomeController extends Controller
         $user->update($data);
 
         return redirect('/profile')->with('success', 'Profile updated successfully!');
+    }
+
+    public function createContent()
+    {
+        return view('home.produk.konten', [
+            "title" => "Tambah Konten"
+        ]);
+    }
+
+    public function storeContent(Request $request)
+    {
+        // Validasi data yang diunggah oleh pengguna
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'content' => 'required|string',
+        ]);
+
+        // Simpan konten yang diunggah ke dalam database
+        $content = new Content();
+
+        $imagePath = $request->file('image')->store('content_images');
+
+        // Simpan data konten ke dalam database
+        $content->image = $imagePath;
+        $content->content = $request->input('content');
+        $content->user_id = auth()->user()->id;
+        $content->save();
+
+        // Redirect kembali ke halaman profil pengguna dengan pesan sukses
+        return redirect()->route('profile')->with('success', 'Konten berhasil ditambahkan!');
     }
 }

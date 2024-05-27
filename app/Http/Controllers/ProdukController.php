@@ -67,7 +67,7 @@ class ProdukController extends Controller
         }
 
         $product = new Product;
-        $product->title = $request->title; 
+        $product->title = $request->title;
         $product->deskripsi = $request->deskripsi;
         $product->gambar_produk = $validateData['gambar_produk'];
         $product->user_id = $user_id;
@@ -80,19 +80,11 @@ class ProdukController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        // Pastikan hanya pemilik post yang dapat menghapusnya
-        if ($product->user_id === auth()->id()) {
-            // Hapus gambar dari storage jika ada
-            if ($product->gambar_produk) {
-                Storage::delete($product->gambar_produk);
-            }
-
-            // Hapus produk dari database
+        if (auth()->user()->id == $product->user_id) {
             $product->delete();
-
-            return redirect()->route('produk')->with('success', 'Produk berhasil dihapus');
+            return redirect()->route('produk')->with('success', 'Product deleted successfully.');
+        } else {
+            return redirect()->route('produk')->with('error', 'You do not have permission to delete this product.');
         }
-
-        return redirect()->route('produk')->with('error', 'Anda tidak memiliki izin untuk menghapus produk ini');
     }
 }

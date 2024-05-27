@@ -1,35 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- section 1 --}}
     <div class="max-sm:hidden">
         <div id="indicators-carousel" class="relative w-full px-32" data-carousel="static">
             <!-- Carousel wrapper -->
             <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
                 <!-- Item 1 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-                    <img class="h-auto max-w-full rounded-lg"
-                        src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg" alt="">
+                    <img src="{{ asset('img/katalog.png') }}" />
                 </div>
                 <!-- Item 2 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img class="h-auto max-w-full rounded-lg"
-                        src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg" alt="">
+                    <img src="{{ asset('img/Angkatan_2022.jpg') }}" />
                 </div>
                 <!-- Item 3 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img class="h-auto max-w-full rounded-lg"
-                        src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg" alt="">
+                    <img src="{{ asset('img/Angkatan_2023.jpg') }}" />
                 </div>
                 <!-- Item 4 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img class="h-auto max-w-full rounded-lg"
-                        src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg" alt="">
+                    <img src="{{ asset('img/cosplay.jpg') }}" />
                 </div>
                 <!-- Item 5 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img class="h-auto max-w-full rounded-lg"
-                        src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg" alt="">
+                    <img src="{{ asset('img/blank.jpeg') }}" />
                 </div>
             </div>
             <!-- Slider indicators -->
@@ -87,7 +81,7 @@
 
     <div class="flex flex-wrap">
         @foreach ($products as $product)
-            <div class="flex items-start gap-2 px-[120px] mt-10">
+            <div class="flex flex-wrap items-start justify-between mx-auto gap-2 px-[120px] mt-10">
                 <img class="w-8 h-8 rounded-full" src="{{ asset('storage/' . $product->user->profile_image) }}">
                 <div class="flex flex-col gap-1">
                     <div class="flex items-center space-x-2 rtl:space-x-reverse">
@@ -138,39 +132,58 @@
                                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
                                     aria-labelledby="dropdownMenuIconButton">
                                     <li>
-                                        <a href="#"
-                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Komentar</a>
-                                    </li>
-                                    <li>
                                         <a href="{{ route('produk.show', $product->id) }}"
-                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Detail</a>
+                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Rincian</a>
                                     </li>
                                     <li>
                                         <a href="#"
-                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Copy</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Laporkan</a>
+                                            class="copyButton block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            data-title="{{ $product->title }}">Salin</a>
                                     </li>
                                     <li>
                                         @if (auth()->check() && $product->user_id === auth()->user()->id)
                                             <form action="{{ route('produk.delete', $product->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
-                                                    type="button"
+                                                <button type="submit"
                                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Hapus
                                                 </button>
                                             </form>
                                     </li>
                                 </ul>
-                            </div>
         @endif
     </div>
     </div>
     </div>
     </div>
-    @endforeach
     </div>
+    @endforeach
+@endsection
+
+@section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const copyButtons = document.querySelectorAll('.copyButton');
+
+            copyButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const productTitle = button.getAttribute('data-title');
+
+                    // Fallback for older browsers
+                    const textarea = document.createElement('textarea');
+                    textarea.value = productTitle;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    try {
+                        document.execCommand('copy');
+                        alert('Product title copied to clipboard!');
+                    } catch (err) {
+                        console.error('Failed to copy: ', err);
+                    }
+                    document.body.removeChild(textarea);
+                });
+            });
+        });
+    </script>
 @endsection

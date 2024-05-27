@@ -26,7 +26,7 @@ class AuthController extends Controller
             $user = Auth::user();
 
             if ($user && $user->status === 'Admin') {
-                return redirect()->intended('/admin');
+                return redirect()->intended('/');
             }
 
             return redirect()->intended('/');

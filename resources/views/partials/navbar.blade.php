@@ -36,6 +36,21 @@
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                             <i class="fa-solid fa-address-card"></i> Profile Settings</a>
                     </li>
+                    @if (auth()->check() && auth()->user()->status === 'Admin')
+                        <li>
+                            <a href="{{ route('dashboard') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                <i class="fa-solid fa-user-shield"></i> Admin Dashboard</a>
+                        </li>
+                    @endif
+                    @if (auth()->user()->status === 'Guru')
+                        <li>
+                            <a href="{{ route('artikelAdmin.create') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                <i class="fa-solid fa-pencil"></i> Buat Artikel
+                            </a>
+                        </li>
+                    @endif
                     <li>
                         <a href="#" onclick="openLogoutDialog()"
                             class="block px-4 py-2 text-sm text-red-700 hover:bg-red-100 dark:hover:bg-red-600 dark:text-red-200 dark:hover:text-white">

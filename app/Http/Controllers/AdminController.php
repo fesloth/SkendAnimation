@@ -33,7 +33,7 @@ class AdminController extends Controller
         $request->validate([
             'nama' => 'required',
             'email' => 'required|email',
-            'status' => 'required|in:Guru,Murid,Lainnya',
+            'status' => 'required|in:Admin,Guru,Murid,Lainnya',
         ]);
 
         $user->update([

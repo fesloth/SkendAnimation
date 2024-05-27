@@ -1,33 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container my-20 flex flex-wrap gap-5 items-center justify-center">
-        @for ($i = 1; $i <= 6; $i++)
-            <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 mb-4">
-                <div
-                    class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <a href="#">
-                        <img class="rounded-t-lg" src="/docs/images/blog/image-{{ $i }}.jpg" alt="" />
-                    </a>
-                    <div class="p-5">
-                        <a href="#">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy
-                                technology acquisitions 2021</h5>
-                        </a>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise
-                            technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                        <a href="#"
-                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Read more
-                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M1 5h12m0 0L9 1m4 4L9 9" />
-                            </svg>
-                        </a>
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h1 class="text-2xl font-semibold mb-4">Hai! Selamat datang di halaman Artikel</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach ($artikels as $artikel)
+                <div class="bg-white overflow-hidden shadow-md rounded-lg relative">
+                    <img src="{{ asset('storage/' . $artikel->gambar) }}" class="w-full h-60 object-cover object-center">
+                    <div class="p-4">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-2">{{ $artikel->judul }}</h2>
+                        <p class="text-sm text-gray-600">{{ \Illuminate\Support\Str::limit($artikel->artikel, 100) }}</p>
                     </div>
+                    @if (auth()->user() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
+                        <form action="{{ route('hapus_artikel', $artikel->id) }}" method="POST" class="absolute top-2 right-2">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-600 hover:text-red-800">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </form>
+                    @endif
                 </div>
-            </div>
-        @endfor
+            @endforeach
+        </div>
     </div>
 @endsection

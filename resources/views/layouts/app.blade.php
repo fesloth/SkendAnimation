@@ -18,13 +18,15 @@
 <body class="bg-white text-black font-open-sans">
     @if (
         !request()->is('login') &&
-            !request()->is('register') &&
-            !request()->is('admin*') &&
-            !request()->is('profile-create') &&
-            !request()->routeIs('product-create') &&
-            !request()->routeIs('produk.show'))
+        !request()->is('register') &&
+        !request()->is('admin*') &&
+        !request()->is('profile-create') &&
+        !request()->routeIs('product-create') &&
+        !request()->routeIs('produk.show') &&
+        !request()->routeIs('add-content') &&
+        !request()->routeIs('artikelAdmin.create'))
         @include('partials.navbar')
-    @endif
+    @endif    
     @yield('content')
     @if (
         !request()->is('login') &&
@@ -32,7 +34,9 @@
             !request()->is('admin*') &&
             !request()->is('profile-create') &&
             !request()->routeIs('product-create') &&
-            !request()->routeIs('produk.show'))
+            !request()->routeIs('produk.show') &&
+            !request()->routeIs('add-content') &&
+            !request()->routeIs('artikelAdmin.create'))
         @include('partials.footer')
     @endif
     <script src="../node_modules/preline/dist/preline.js"></script>

@@ -53,11 +53,32 @@
                         <a href="{{ route('edit-profile') }}" class="text-white">Edit <i
                                 class="fas fa-pencil ml-1"></i></a>
                     </button>
+                    <button class="bg-[#dc9d9d] text-font py-2 px-4 rounded-lg hover:bg-hoverTheme">
+                        <a href="{{ route('add-content') }}" class="text-white">Tambah Konten <i
+                                class="fas fa-plus ml-1"></i></a>
+                    </button>
                 </div>
             </div>
         </div>
         <script src="../node_modules/preline/dist/preline.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+        @if ($userContents->isNotEmpty())
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-24">
+            @foreach ($userContents as $content)
+                <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <img src="{{ asset('storage/' . $content->image) }}" alt="Content Image" class="object-cover">
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-lg font-semibold mb-2">{{ $content->content }}</p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        
+        @else
+            <p class="text-center text-gray-600">Belum ada konten yang ditambahkan oleh pengguna.</p>
+        @endif
     @else
         <nav class="bg-white border-gray-200 dark:bg-gray-900">
             <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-2">
@@ -75,7 +96,6 @@
                 </span>
                 <div>
                     <h3 class="text-3xl font-bold mb-2">{{ auth()->user()->nama }}</h3>
-                    <p class="text-xl mb-3">{{ auth()->user()->work_description }}</p>
                     @if (auth()->user()->bio)
                     @else
                         <p class="text-md mb-3">
@@ -84,7 +104,6 @@
                         </p>
                     @endif
                     <div class="text-left">
-                        <h3 class="text-3xl font-bold mb-2">{{ auth()->user()->nama }}</h3>
                         <p class="text-xl mb-3">{{ auth()->user()->bio }}</p>
                         <button class="bg-blue-200 text-blue-500 py-2 px-4 rounded-lg hover:bg-blue-100">
                             <a href="{{ route('edit-profile') }}">Edit Profile</a>
@@ -93,6 +112,7 @@
                 </div>
             </div>
         </div>
+
         <script src="../node_modules/preline/dist/preline.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
     @endif

@@ -1,5 +1,24 @@
 @extends('layouts.app')
 
+@section('content')
+
+<div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
+    <div class="img">
+        <img src="{{ asset('img/banner_home.jpeg') }}" />
+    </div>
+    <div class="description w-full md:w-1/2 mt-4">
+        <h2 class="text-2xl font-semibold mb-4">Profile Jurusan Animasi SMKN 2 Banjarmasin</h2>
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/3vG9Yer7cPk?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p class="mt-4 text-gray-800 leading-relaxed">Program keahlian Animasi merupakan salah satu program keahlian yang sudah ada di SMKN 2 Banjarmasin. Animasi adalah sebuah program keahlian yang mempelajari dasar – dasar kemampuan dan keilmuan menjadi seorang animator. Di Program Keahlian Animasi siswa akan mempelajari strategi menggambar.</p>
+        <p class="mt-4 text-gray-800 leading-relaxed">Kurikulum program keahlian Animasi mengadopsi unit-unit kompetensi yang tercantum dalam Skema Sertifikasi KKNI Level II Kompetensi Animasi. Penyusunan kurikulum Animasi juga melibatkan industri. SMK Negeri 2 Banjarmasin melibatkan industri partner di Kalimantan Selatan dan luar kalimantan dalam penyusunan kurikulum operasional ini. Jadi kurikulum yang dirancang juga selalu berpedoman atas saran, masukan, dan kebutuhaan Dunia Kerja dan Industri.</p>
+        <p class="mt-4 text-gray-800 leading-relaxed">Guru Produktif Animasi berjumlah 4 orang dimana selain memiliki pendidikan sesuai dengan yang disyaratkan, Guru Produktif Animasi juga berlatar belakang pernah bekerja di industri dan memiliki predikat asesor kompetensi.</p>
+        <p class="mt-4 text-gray-800 leading-relaxed">Sarana praktik dan belajar dirancang dengan standar industri seperti RPS dan studio animasi, sehingga para lulusan SMK Negeri 2 Banjarmasin diharapkan menjadi insan profesional dalam bidang animasi baik di dalam maupun di luar negeri, memiliki kepribadian, dan karakter industri.</p>
+        <p class="mt-4 text-gray-800 leading-relaxed">Kurikulum dan proses pembelajaran dirancang untuk mendorong peserta didik untuk aktif, kreatif, mandiri, percaya diri, dan menjadi generasi yang berbasis pada Profil Pelajar Pancasila dan Budaya Kerja. Kegiatan praktik baik sekolah maupun praktik kerja industri dipersiapkan dengan baik untuk membentuk mental yang kuat dan mengasah keterampilan serta keahlian peserta didik. Hal ini bertujuan untuk menyiapkan lulusan yang siap bekerja, melanjutkan ke jenjang Pendidikan yang lebih tinggi, atau berwirausaha.</p>
+        <p class="mt-4 italic text-gray-600">Ketua Program Keahlian : Nor Riduan, S.Kom</p>
+    </div>
+</div>
+
+
 <div class="lg:hidden">
     <div
         class="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
@@ -68,3 +87,5 @@
         </div>
     </div>
 </div>
+
+@endsection

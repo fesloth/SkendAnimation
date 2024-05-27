@@ -8,13 +8,13 @@
             <div class="mb-4">
                 <label for="title" class="block text-sm font-medium text-gray-700 dark:text-white">Judul Produk</label>
                 <input type="text" id="title" name="title"
-                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-theme focus:border-theme dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:focus:ring-blue-600 dark:focus:border-blue-600">
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-theme focus:border-theme dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:focus:ring-blue-600 dark:focus:border-blue-600" required>
             </div>
             <div class="mb-4">
                 <label for="deskripsi" class="block text-sm font-medium text-gray-700 dark:text-white">Deskripsi
                     Produk</label>
                 <textarea id="deskripsi" name="deskripsi" rows="4"
-                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-theme focus:border-theme dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:focus:ring-blue-600 dark:focus:border-blue-600"></textarea>
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-theme focus:border-theme dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:focus:ring-blue-600 dark:focus:border-blue-600" required></textarea>
             </div>
             <div class="mb-4">
                 <div class="flex items-center justify-center w-full">
@@ -30,7 +30,7 @@
                                     upload</span> or drag and drop</p>
                             <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                         </div>
-                        <input id="gambar_produk" name="gambar_produk" type="file" class="hidden" multiple />
+                        <input id="gambar_produk" name="gambar_produk" type="file" class="hidden" multiple required/>
                     </label>
                 </div>
             </div>

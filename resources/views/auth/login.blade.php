@@ -22,7 +22,6 @@
                     </div>
                 </div>
             @endif
-
             <div class="mb-4 flex items-center">
                 <i class="fas fa-envelope text-white leading-tight rounded-l-md bg-theme p-[9px]"></i>
                 <input
@@ -40,8 +39,6 @@
                     <i id="eyeIcon" class="fas fa-eye text-theme"></i>
                 </div>
             </div>
-
-
             <div class="mb-4 flex items-center justify-between">
                 <label class="flex items-center">
                     <input type="checkbox" name="remember" class="form-checkbox text-blue-500">
@@ -52,7 +49,6 @@
                     </p>
                 </div>
             </div>
-
             <div class="flex items-center justify-center">
                 <button
                     class="bg-theme hover:bg-[BA7979] text-white font-bold py-2 px-[140px] rounded focus:outline-none focus:shadow-outline"
@@ -60,7 +56,6 @@
                     Login
                 </button>
             </div>
-
             <p class="mt-4 text-end text-gray-700">
                 Belum punya akun? <a href="{{ route('register') }}" class="text-blue-500 hover:underline">Daftar</a>
             </p>

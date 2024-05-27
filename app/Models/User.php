@@ -24,6 +24,16 @@ class User extends Authenticatable
         'youtube',
     ];
 
+    public function contents()
+    {
+        return $this->hasMany(Content::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

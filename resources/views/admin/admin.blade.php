@@ -9,9 +9,10 @@
                     class="self-center text-2xl font-bold whitespace-nowrap dark:text-white max-sm:text-base">SkendAnimation</span>
             </a>
             <div class="flex items-center space-x-6 rtl:space-x-reverse">
-                <a href="/" class="text-sm  text-gray-500 dark:text-white hover:underline">Home</a>
+                <a href="/" class="text-sm  text-gray-500 dark:text-white hover:underline">Beranda</a>
+                <a href="/artikelAdmin/create" class="text-sm  text-gray-500 dark:text-white hover:underline">Buat Artikel</a>
                 <a href="#" onclick="openLogoutDialog()" class="text-red-700 hover:underline text-sm">
-                    Logout
+                    Keluar
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
