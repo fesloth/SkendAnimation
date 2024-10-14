@@ -74,13 +74,13 @@ Di halaman ini, hanya admin yang dapat mengakses, fungsinya ada hapus user, edit
 tambah user, dan laporkan user. Ada juga fitur analitik user dan favorite.
 - Dashboard:
 Di halaman ini, ditampilkan banner dan foto-foto jurusan animasi di SMKN 2 Banjarmasin, serta video youtube yang mereka buat.
-- Galeri
+- Galeri:
 Di halaman ini, siswa/siswi dapat menampilkan produk-karya yang mereka hasilkan, seperti gantungan kunci, poster, dan sebagainya.
 Kami gabung karya mereka dalam satu halaman.
-- Favorit
+- Favorit:
 Di halaman ini, kami akan memberikan akses kepada pengunjung yang menyukai karya-karya siswa jurusan animasi, dan apabila
 pengunjung menyukai salah satu karya dan ingin dibuatkan gambar maka dapat menghubungi nomor siswa di halaman profile
-- Profile
+- Profile:
 Di halaman ini, selain info mengenai media sosial siswa/siswi jurusan animasi,
 terdapat fitur unggah produk/gambar/animasi ciptaan mereka. Ini memungkinkan mereka
 membangun personal branding dengan mengikuti arahan yang telah disediakan
